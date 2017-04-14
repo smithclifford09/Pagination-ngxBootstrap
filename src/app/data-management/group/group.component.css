@@ -1,0 +1,15 @@
+/*thead { display:block;}
+
+tbody { display:block;
+       overflow:auto; 
+       max-height: 270px;
+        }
+   th { height:50px;
+        width:80px; }
+   td { height:50px; 
+	    width:80px;	 
+	   }*/
+
+	   .fa-plus{
+	   	color: green;
+	   }

@@ -1,0 +1,41 @@
+   <table class="table table-striped">
+           <thead>
+           	<tr>
+             <th >Identifiant </th>
+              <th >Nom </th>
+           		<th >Image</th>
+           		
+           		<th ></th>
+           		<th ></th>
+           	</tr>
+           </thead>
+           <tbody >
+
+           <tr *ngFor="let group of groups" >
+           <td >{{group.idGroupe}} </td>
+           <td >{{group.nom}} </td>
+           <td >{{group.imageUrl}}</td>
+     <td ><button  class="btn btn-warning" >Update <i class="fa fa-cog" aria-hidden="true"></i></button></td>
+            <td ><button  class="btn ink-reaction btn-danger">Delete <i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
+            </tr>
+        
+       
+         
+        </tbody>
+        </table>
+
+
+ <div class="row" >
+
+<div class="col-md-6">
+  <pagination [totalItems]="bigTotalItems" [(ngModel)]="bigCurrentPage" [maxSize]="maxSize" class="pagination-sm"
+              [boundaryLinks]="true" [rotate]="false"  (click)="getListGroups()"
+              [itemsPerPage]="itemsPerPage" (pageChanged)="pageChanged($event)"></pagination>
+
+</div>
+<div class="offset-sm-4 col-sm-2" style="margin-top: 1.5%; ">
+
+   <button style="color: green;" type="button" class="btn btn-block btn-default "><i class="fa fa-plus" aria-hidden="true"></i> Ajouter</button>
+</div>
+
+</div>
