@@ -5,7 +5,10 @@ import { VehiculeComponent } from "./vehicule/vehicule.component";
 import { GroupComponent } from "./group/group.component";
 import { DriverComponent } from "./driver/driver.component";
 import { InterestPointComponent } from "./interest-point/interest-point.component";
- 
+ import { GroupFormComponent } from './group/group-form/group-form.component';
+import { VehiculeFormComponent } from './vehicule/vehicule-form/vehicule-form.component';
+import { DriverFormComponent } from './driver/driver-form/driver-form.component';
+
 @NgModule({
     imports: [
         RouterModule.forChild([
@@ -21,12 +24,24 @@ import { InterestPointComponent } from "./interest-point/interest-point.componen
                                 component: VehiculeComponent
                             },
                             {
+                                path: 'vehicule/add/:id',
+                                component: VehiculeFormComponent
+                            },
+                            {
                                 path: 'groupe',
                                 component: GroupComponent
                             },
                             {
+                                path: 'groupe/add/:id',
+                                component: GroupFormComponent
+                            },
+                            {
                                 path: 'driver',
                                 component: DriverComponent
+                            },
+                            {
+                                path: 'driver/add/:id',
+                                component: DriverFormComponent
                             },{
                                 path:'interestPoint',
                                 component: InterestPointComponent

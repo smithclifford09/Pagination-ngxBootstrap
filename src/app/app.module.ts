@@ -4,9 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import {AppRoutingModule} from "./app-routing.module";
 import { PaginationModule } from 'ngx-bootstrap';
+import {DndModule} from 'ng2-dnd';
 
 import { AppComponent } from './app.component';
 import { DataManagementModule } from './data-management/data-management.module';
+
+import {TagInputModule} from "ng2-tag-input";
 
 @NgModule({
   declarations: [
@@ -18,7 +21,9 @@ import { DataManagementModule } from './data-management/data-management.module';
     FormsModule,
     HttpModule,
     AppRoutingModule,
-    DataManagementModule
+    DataManagementModule,
+    DndModule.forRoot(),
+    TagInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

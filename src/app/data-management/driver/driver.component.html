@@ -1,3 +1,68 @@
-<p>
-  driver works!
-</p>
+   <table class="table table-striped">
+           <thead>
+           	<tr>
+             <th >IDENTIFIANT </th>
+              <th >CODE </th>
+              <th >NOM</th>
+              <th >PRENOM</th>
+              <th >TELEPHONE</th>
+              <th >CIN</th>
+              <th >EMAIL</th>
+           		
+           		<th ></th>
+           		<th ></th>
+              <th></th>
+           	</tr>
+           </thead>
+           <tbody >
+
+           <tr  dnd-draggable *ngFor="let driver of drivers" [dragEnabled]="true"  [dropZones]="['delete-dropZone']" [dragData]="driver" >
+           <td >{{driver.idDriver}} </td>
+           <td >{{driver.code}} </td>
+           <td >{{driver.firstName}}</td>
+           <td >{{driver.lastName}}</td>
+           <td >{{driver.telephone}}</td>
+           <td >{{driver.cin}}</td>
+           <td >{{driver.email}}</td>
+            <td ><a [routerLink]="['/driver/add/', -driver.idDriver]" routerLinkActive="active"><button  class="btn ink-reaction btn-success">Details <i class="fa  fa-television" aria-hidden="true"></i></button></a></td>
+
+     <td ><a [routerLink]="['/driver/add/', driver.idDriver]" routerLinkActive="active"><button  class="btn btn-warning" >Update <i class="fa fa-cog" aria-hidden="true"></i></button></a></td>
+
+     
+
+            <td ><button (click)="deleteDriver(driver)" class="btn ink-reaction btn-danger">Delete <i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
+
+              
+            </tr>
+        
+       
+         
+        </tbody>
+        </table>
+
+
+ <div class="row" >
+
+<div class="col-md-6">
+  <pagination [totalItems]="bigTotalItems" [(ngModel)]="bigCurrentPage" [maxSize]="maxSize" class="pagination-sm"
+              [boundaryLinks]="true" [rotate]="false"  
+              [itemsPerPage]="itemsPerPage" (pageChanged)="pageChanged($event)"></pagination>
+
+</div>
+
+
+
+<div class="offset-sm-4 col-sm-2" style="margin-top: 1.5%; ">
+
+   <button style="color: green;" type="button" class="btn btn-block btn-default "><i class="fa fa-plus" aria-hidden="true"></i><a [routerLink]="['/driver/add/', 0]" routerLinkActive="active"> Ajouter</a></button>
+</div>
+
+
+
+<div   class="chang offset-sm-4 col-sm-2" >
+
+   <img dnd-droppable (onDropSuccess)="deleteDriver($event)" [dropZones]="['delete-dropZone']" src="../../assets/img/corbeille.jpg" />
+</div>
+</div>
+
+

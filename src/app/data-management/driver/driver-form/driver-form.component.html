@@ -1,0 +1,326 @@
+
+<div class="row">
+
+<div *ngIf="!driver" class="col-md-6 col-md-offset-3">
+          <!-- Horizontal Form -->
+          <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Add Driver</h3>
+            </div>
+     
+         <div class="box-body">
+ <div class="form-group">
+                  <label>choisissez un vehicule pour ce chauffeur</label>
+<div class="row">
+<div class="col-md-12">
+
+       <tag-input [maxItems]="1"  [ngModel]="listIdsSelected" (onAdd)="onItemAdded($event)"  [identifyBy]="'idVehicule'" [displayBy]="'matricule'" [onlyFromAutocomplete]="true">
+  
+     <tag-input-dropdown [identifyBy]="'idVehicule'" [displayBy]="'matricule'" [showDropdownIfEmpty]="true"
+                        [autocompleteItems]="vehiculesMatricule">
+    </tag-input-dropdown>
+
+         </tag-input>
+
+        </div>
+          </div>
+                </div>
+                </div>
+
+
+            <!-- /.box-header -->
+            <!-- form start -->
+             <form #f="ngForm" class="form-horizontal">
+              <div class="box-body">
+
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label" >Prenom</label>
+
+                  <div class="col-sm-10">
+                    <input [(ngModel)]="firstName" name="firstName" type="text" maxlength="50"  class="form-control" required="true" placeholder="nom du groupe">
+                  </div>
+                </div>
+                 <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label" >Nom</label>
+
+                  <div class="col-sm-10">
+                    <input [(ngModel)]="lastName" name="lastName" type="text" maxlength="50"  class="form-control" required="true" placeholder="nom du groupe">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label" >Telephone</label>
+
+                  <div class="col-sm-10">
+                    <input [(ngModel)]="telephone" name="telephone" type="text" maxlength="50"  class="form-control" required="true" placeholder="nom du groupe">
+                  </div>
+                </div>
+                 <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label" >Code</label>
+
+                  <div class="col-sm-10">
+                    <input [(ngModel)]="code" name="code" type="text" maxlength="50"  class="form-control" required="true" placeholder="nom du groupe">
+                  </div>
+                </div>
+                 <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label" >Cin</label>
+
+                  <div class="col-sm-10">
+                    <input [(ngModel)]="cin" name="cin" type="text" maxlength="50"  class="form-control" required="true" placeholder="nom du groupe">
+                  </div>
+                </div>
+                 <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label" >Email</label>
+
+                  <div class="col-sm-10">
+                    <input [(ngModel)]="email" name="email" type="text" maxlength="50"  class="form-control" required="true" placeholder="nom du groupe">
+                  </div>
+                </div>
+                   <div class="box box-warning">
+            <!-- /.box-header -->
+
+              </div>
+              <!-- /.box-body -->
+              <div class="box-footer">
+                <button  (click)="goBack()"  class="btn btn-default">Cancel</button>
+                <button type="submit" (click)="addDriver()" class="btn btn-info pull-right">Add</button>
+              </div>
+              </div>
+              <!-- /.box-footer -->
+       
+          </form>
+
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<div *ngIf="driver&&!show" class="col-md-6 col-md-offset-3">
+          <!-- Horizontal Form -->
+          <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">modifier ce  Chauffeur</h3>
+            </div>
+             <div class="box-body">
+ <div class="form-group">
+                  <label>choisissez un vehicule pour ce chauffeur</label>
+<div class="row">
+<div class="col-md-12">
+
+         <tag-input  [maxItems]="1"  [ngModel]="vehiculeMatricule" [identifyBy]="'idVehicule'" [displayBy]="'matricule'"(onAdd)="onItemAdded($event)" [onlyFromAutocomplete]="true" (onRemove)="onItemRemoved($event)">
+  
+     <tag-input-dropdown [identifyBy]="'idVehicule'" [displayBy]="'matricule'" [showDropdownIfEmpty]="true"
+                        [autocompleteItems]="vehiculesMatricule">
+    </tag-input-dropdown>
+
+         </tag-input>
+
+        </div>
+          </div>
+                </div>
+                </div>
+
+            <!-- /.box-header -->
+            <!-- form start -->
+             <form #f="ngForm" class="form-horizontal">
+              <div class="box-body">
+              <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label" >Identifiant</label>
+
+                  <div  class="col-sm-10">
+                    <input [(ngModel)]="driver.idDriver" name="idDriver" type="text" maxlength="50"  class="form-control" required="true" placeholder="nom du groupe" autofocus="autofocus" disabled>
+                  </div>
+                </div>
+                
+               <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label" >Prenom</label>
+
+                  <div class="col-sm-10">
+                    <input [(ngModel)]="driver.firstName" name="firstName" type="text" maxlength="50"  class="form-control" required="true" placeholder="nom du groupe">
+                  </div>
+                </div>
+                 <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label" >Nom</label>
+
+                  <div class="col-sm-10">
+                    <input [(ngModel)]="driver.lastName" name="lastName" type="text" maxlength="50"  class="form-control" required="true" placeholder="nom du groupe">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label" >Telephone</label>
+
+                  <div class="col-sm-10">
+                    <input [(ngModel)]="driver.telephone" name="telephone" type="text" maxlength="50"  class="form-control" required="true" placeholder="nom du groupe">
+                  </div>
+                </div>
+                 <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label" >Code</label>
+
+                  <div class="col-sm-10">
+                    <input [(ngModel)]="driver.code" name="code" type="text" maxlength="50"  class="form-control" required="true" placeholder="nom du groupe">
+                  </div>
+                </div>
+                 <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label" >Cin</label>
+
+                  <div class="col-sm-10">
+                    <input [(ngModel)]="driver.cin" name="cin" type="text" maxlength="50"  class="form-control" required="true" placeholder="nom du groupe">
+                  </div>
+                </div>
+                 <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label" >Email</label>
+
+                  <div class="col-sm-10">
+                    <input [(ngModel)]="driver.email" name="email" type="text" maxlength="50"  class="form-control" required="true" placeholder="nom du groupe">
+                  </div>
+                </div>
+
+                   <div class="box box-warning">
+            <!-- /.box-header -->
+          
+                
+           
+
+              </div>
+              <!-- /.box-body -->
+              <div class="box-footer">
+                <button  (click)="goBack()"  class="btn btn-default">Cancel</button>
+
+                <button type="submit"  (click)="updateDriver()" class="btn btn-info pull-right">Update</button>
+              </div>
+              </div>
+              <!-- /.box-footer -->
+       
+          </form>
+
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<div *ngIf="show" class="col-md-6 col-md-offset-3">
+          <!-- Horizontal Form -->
+          <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Affichage des donnees du Chauffeur selectionne </h3>
+            </div>
+     
+         <div class="box-body">
+ <div class="form-group">
+                  <label></label>
+<div class="row">
+<div class="col-md-12">
+
+    <tag-input [removable]="false" [maxItems]="maxItems"  [ngModel]="vehiculesMatricule" [identifyBy]="'idVehicule'" [displayBy]="'matricule'"(onAdd)="onItemAdded($event)">
+  
+     <tag-input-dropdown [identifyBy]="'idVehicule'" [displayBy]="'matricule'" [showDropdownIfEmpty]="true"
+                        [autocompleteItems]="vehiculesMatricule">
+    </tag-input-dropdown>
+
+         </tag-input>
+
+        </div>
+          </div>
+                </div>
+                </div>
+
+
+            <!-- /.box-header -->
+            <!-- form start -->
+             <form #f="ngForm" class="form-horizontal">
+              <div class="box-body">
+              <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label" >Identifiant</label>
+
+                  <div  class="col-sm-10">
+                    <input [(ngModel)]="driver.idDriver" name="idDriver" type="text" maxlength="50"  class="form-control" required="true" placeholder="nom du groupe" autofocus="autofocus" disabled>
+                  </div>
+                </div>
+                
+               <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label" >Prenom</label>
+
+                  <div class="col-sm-10">
+                    <input [(ngModel)]="driver.firstName" name="firstName" type="text" maxlength="50"  class="form-control" required="true" placeholder="nom du groupe" disabled>
+                  </div>
+                </div>
+                 <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label" >Nom</label>
+
+                  <div class="col-sm-10">
+                    <input [(ngModel)]="driver.lastName" name="lastName" type="text" maxlength="50"  class="form-control" required="true" placeholder="nom du groupe" disabled>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label" >Telephone</label>
+
+                  <div class="col-sm-10">
+                    <input [(ngModel)]="driver.telephone" name="telephone" type="text" maxlength="50"  class="form-control" required="true" placeholder="nom du groupe" disabled>
+                  </div>
+                </div>
+                 <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label" >Code</label>
+
+                  <div class="col-sm-10">
+                    <input [(ngModel)]="driver.code" name="code" type="text" maxlength="50"  class="form-control" required="true" placeholder="nom du groupe" disabled>
+                  </div>
+                </div>
+                 <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label" >Cin</label>
+
+                  <div class="col-sm-10">
+                    <input [(ngModel)]="driver.cin" name="cin" type="text" maxlength="50"  class="form-control" required="true" placeholder="nom du groupe" disabled>
+                  </div>
+                </div>
+                 <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label" >Email</label>
+
+                  <div class="col-sm-10">
+                    <input [(ngModel)]="driver.email" name="email" type="text" maxlength="50"  class="form-control" required="true" placeholder="nom du groupe" disabled>
+                  </div>
+                </div>
+                
+              
+           
+
+                   <div class="box box-warning">
+            <!-- /.box-header -->
+          
+                
+           
+
+              </div>
+              <!-- /.box-body -->
+              <div class="box-footer">
+         
+                <button  (click)="goBack()" class="btn btn-default">Go Back</button>
+              
+              </div>
+              </div>
+              <!-- /.box-footer -->
+       
+          </form>
+
+</div>
+
+</div>
+
+
+</div>
+
+{{idSelected | json}}

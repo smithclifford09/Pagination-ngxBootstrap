@@ -1,0 +1,247 @@
+<div class="row">
+
+<div *ngIf="!vehicule" class="col-md-6 col-md-offset-3">
+          <!-- Horizontal Form -->
+          <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Add Vehicule</h3>
+            </div>
+     
+         <div class="box-body">
+ <div class="form-group">
+                  <label>choisissez un ou plusieures groupes pour ce vehicule</label>
+<div class="row">
+<div class="col-md-12">
+
+         <tag-input  [ngModel]="listIdsSelected" (onAdd)="onItemAdded($event)"  [identifyBy]="'idGroupe'" [displayBy]="'nom'" [onlyFromAutocomplete]="true">
+  
+     <tag-input-dropdown [identifyBy]="'idGroupe'" [displayBy]="'nom'" [showDropdownIfEmpty]="true"
+                        [autocompleteItems]="GroupsLabelToSelect">
+    </tag-input-dropdown>
+
+         </tag-input>
+
+        </div>
+          </div>
+                </div>
+                </div>
+
+
+            <!-- /.box-header -->
+            <!-- form start -->
+             <form #f="ngForm" class="form-horizontal">
+              <div class="box-body">
+
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label" >matricule</label>
+
+                  <div class="col-sm-10">
+                    <input [(ngModel)]="matricule" name="matricule" type="text" maxlength="50"  class="form-control" required="true" placeholder="nom du groupe">
+                  </div>
+                </div>
+                 <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label" >mark</label>
+
+                  <div class="col-sm-10">
+                    <input [(ngModel)]="mark" name="mark" type="text" maxlength="50"  class="form-control" required="true" placeholder="nom du groupe">
+                  </div>
+                </div>
+
+                   <div class="box box-warning">
+            <!-- /.box-header -->
+
+              </div>
+              <!-- /.box-body -->
+              <div class="box-footer">
+                <button  (click)="goBack()"  class="btn btn-default">Cancel</button>
+                <button type="submit" (click)="addVehicule()" class="btn btn-info pull-right">Add</button>
+              </div>
+              </div>
+              <!-- /.box-footer -->
+       
+          </form>
+
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<div *ngIf="vehicule&&!show" class="col-md-6 col-md-offset-3">
+          <!-- Horizontal Form -->
+          <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Update Vehicule</h3>
+            </div>
+     
+         <div class="box-body">
+ <div class="form-group">
+                  <label>modifiez un ou plusieures groupes pour ce vehicule</label>
+<div class="row">
+<div class="col-md-12">
+
+    <tag-input  [ngModel]="vehiculeGroups" [identifyBy]="'idGroupe'" [displayBy]="'nom'"(onAdd)="onItemAdded($event)" [onlyFromAutocomplete]="true">
+  
+     <tag-input-dropdown [identifyBy]="'idGroupe'" [displayBy]="'nom'" [showDropdownIfEmpty]="true"
+                        [autocompleteItems]="GroupsLabelToSelect">
+    </tag-input-dropdown>
+
+         </tag-input>
+
+        </div>
+          </div>
+                </div>
+                </div>
+
+
+            <!-- /.box-header -->
+            <!-- form start -->
+             <form #f="ngForm" class="form-horizontal">
+              <div class="box-body">
+              <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label" >Identifiant</label>
+
+                  <div  class="col-sm-10">
+                    <input [(ngModel)]="vehicule.idVehicule" name="idGroup" type="text" maxlength="50"  class="form-control" required="true" placeholder="nom du groupe" autofocus="autofocus" disabled>
+                  </div>
+                </div>
+                
+                <div   class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label" >nom</label>
+
+                  <div  class="col-sm-10">
+                    <input [(ngModel)]="vehicule.matricule" name="nom" type="text" maxlength="50"  class="form-control" required="true" placeholder="nom du groupe">
+                  </div>
+                </div>
+
+
+                <div   class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label" >Image</label>
+
+                  <div  class="col-sm-10">
+                    <input [(ngModel)]="vehicule.mark" name="imageUrl" type="text" maxlength="50"  class="form-control" required="true" placeholder="nom du groupe">
+                  </div>
+                </div>
+
+                   <div class="box box-warning">
+            <!-- /.box-header -->
+          
+                
+           
+
+              </div>
+              <!-- /.box-body -->
+              <div class="box-footer">
+                <button  (click)="goBack()"  class="btn btn-default">Cancel</button>
+
+                <button type="submit"  (click)="updateVehicule()" class="btn btn-info pull-right">Update</button>
+              </div>
+              </div>
+              <!-- /.box-footer -->
+       
+          </form>
+
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<div *ngIf="show" class="col-md-6 col-md-offset-3">
+          <!-- Horizontal Form -->
+          <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Affichage des donnees du Vehicule selectionne </h3>
+            </div>
+     
+         <div class="box-body">
+ <div class="form-group">
+                  <label></label>
+<div class="row">
+<div class="col-md-12">
+
+    <tag-input [removable]="false" [maxItems]="maxItems"  [ngModel]="vehiculeGroups" [identifyBy]="'idGroupe'" [displayBy]="'nom'"(onAdd)="onItemAdded($event)">
+    <tag-input-dropdown [identifyBy]="'idGroupe'" [displayBy]="'nom'" [showDropdownIfEmpty]="true"
+                        [autocompleteItems]="vehiculeGroups">
+    </tag-input-dropdown>
+         </tag-input>
+
+
+
+
+
+        </div>
+          </div>
+                </div>
+                </div>
+
+
+            <!-- /.box-header -->
+            <!-- form start -->
+             <form #f="ngForm" class="form-horizontal">
+              <div class="box-body">
+              <div  class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label" >Identifiant</label>
+
+                  <div  class="col-sm-10">
+                    <input value="{{vehicule.idVehicule}}" disabled type="text"   class="form-control"  >
+                  </div>
+                </div>
+                
+                <div   class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label" >nom</label>
+
+                    <div  class="col-sm-10">
+                    <input value="{{vehicule.matricule}}" disabled type="text"   class="form-control"  >
+                  </div>
+                </div>
+
+
+                <div  class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label" >Image</label>
+
+                    <div  class="col-sm-10">
+                    <input value="{{vehicule.mark}}" disabled type="text"   class="form-control"  >
+                  </div>
+                </div>
+           
+
+                   <div class="box box-warning">
+            <!-- /.box-header -->
+          
+                
+           
+
+              </div>
+              <!-- /.box-body -->
+              <div class="box-footer">
+         
+                <button  (click)="goBack()" class="btn btn-default">Go Back</button>
+              
+              </div>
+              </div>
+              <!-- /.box-footer -->
+       
+          </form>
+
+</div>
+
+</div>
+
+
+</div>
+

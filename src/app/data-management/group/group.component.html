@@ -7,16 +7,24 @@
            		
            		<th ></th>
            		<th ></th>
+              <th></th>
            	</tr>
            </thead>
            <tbody >
 
-           <tr *ngFor="let group of groups" >
+           <tr  dnd-draggable *ngFor="let group of groups" [dragEnabled]="true"  [dropZones]="['delete-dropZone']" [dragData]="group" >
            <td >{{group.idGroupe}} </td>
            <td >{{group.nom}} </td>
            <td >{{group.imageUrl}}</td>
-     <td ><button  class="btn btn-warning" >Update <i class="fa fa-cog" aria-hidden="true"></i></button></td>
-            <td ><button  class="btn ink-reaction btn-danger">Delete <i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
+            <td ><a [routerLink]="['/groupe/add/', -group.idGroupe]" routerLinkActive="active"><button  class="btn ink-reaction btn-success">Details <i class="fa  fa-television" aria-hidden="true"></i></button></a></td>
+
+     <td ><a [routerLink]="['/groupe/add/', group.idGroupe]" routerLinkActive="active"><button  class="btn btn-warning" >Update <i class="fa fa-cog" aria-hidden="true"></i></button></a></td>
+
+     
+
+            <td ><button (click)="deleteGroupe(group)" class="btn ink-reaction btn-danger">Delete <i class="fa fa-trash-o" aria-hidden="true"></i></button></td>
+
+              
             </tr>
         
        
@@ -29,13 +37,24 @@
 
 <div class="col-md-6">
   <pagination [totalItems]="bigTotalItems" [(ngModel)]="bigCurrentPage" [maxSize]="maxSize" class="pagination-sm"
-              [boundaryLinks]="true" [rotate]="false"  (click)="getListGroups()"
+              [boundaryLinks]="true" [rotate]="false"  
               [itemsPerPage]="itemsPerPage" (pageChanged)="pageChanged($event)"></pagination>
 
 </div>
+
+
+
 <div class="offset-sm-4 col-sm-2" style="margin-top: 1.5%; ">
 
-   <button style="color: green;" type="button" class="btn btn-block btn-default "><i class="fa fa-plus" aria-hidden="true"></i> Ajouter</button>
+   <button style="color: green;" type="button" class="btn btn-block btn-default "><i class="fa fa-plus" aria-hidden="true"></i><a [routerLink]="['/groupe/add/', 0]" routerLinkActive="active"> Ajouter</a></button>
 </div>
 
+
+
+<div   class="chang offset-sm-4 col-sm-2" >
+
+   <img dnd-droppable (onDropSuccess)="deleteGroupe($event)" [dropZones]="['delete-dropZone']" src="../../assets/img/corbeille.jpg" />
 </div>
+</div>
+
+
